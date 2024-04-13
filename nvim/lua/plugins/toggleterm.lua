@@ -2,18 +2,24 @@ return {
     'akinsho/toggleterm.nvim',
     version = "*",
     config = function()
-        require("toggleterm").setup({
-            -- Asigna una tecla para abrir una nueva terminal al lado de la actual
-            open_mapping = [[<C-k>]],
-        })
+        local counter = 1
 
-        -- Definir función para abrir una nueva terminal adicional
-        local function open_new_terminal()
-            require('toggleterm').exec(vim.env.SHELL)
+        local function executeToggleTerm()
+            counter = counter + 1
+            local command = ":ToggleTerm"..counter.."<CR>"
+            vim.api.nvim_set_keymap('n', '<C-t>',command,{noremap = true, silent = true})
         end
 
-        -- Asigna una tecla para abrir una nueva terminal adicional
-        vim.api.nvim_set_keymap('n', '<C-k>', ':lua open_new_terminal()<CR>', {noremap = true, silent = true})
+
+        require("toggleterm").setup({
+            on_open = function()
+                executeToggleTerm()
+                vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]])
+
+            end,
+            vim.api.nvim_set_keymap('n', '<C-t>', ':ToggleTerm <CR>', {noremap = true, silent = true}),
+            --vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]])
+        })
     end
 }
 

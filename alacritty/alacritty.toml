@@ -1,0 +1,38 @@
+# Archivo de configuración de Alacritty
+
+import = [
+    #"~/.config/alacritty/catppuccin-macchiato.toml"
+    "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+# Opciones generales
+shell = { program = "/usr/bin/fish", args = ["-l"] }
+live_config_reload = true
+ipc_socket = true
+
+# Variables de entorno
+[env]
+WINIT_X11_SCALE_FACTOR = "2.0"
+
+# Configuración de la ventana
+[window]
+dimensions = { columns = 90, lines = 35 }
+decorations = "None"
+opacity = 0.85
+startup_mode = "Windowed"
+title = "Alacritty"
+dynamic_title = true
+padding = {x = 5, y = 2}
+
+# Configuración de la fuente
+[font]
+normal = { family =  "LiterationMono Nerd Font",  style = "Regular"}
+
+#Configuración de los colores
+#[colors]
+# primary = { background = "#1a1b26" }
+
+# Configuración del cursor
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+
